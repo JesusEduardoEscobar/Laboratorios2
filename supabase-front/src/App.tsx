@@ -2,7 +2,6 @@ import { useEffect, useState, type ChangeEvent, type JSX } from "react";
 import "./App.css";
 import supabase from "./supabase-client";
 
-// Interfaz para los empleados
 interface Employee {
   id: number;
   name: string;
@@ -22,7 +21,6 @@ function App(): JSX.Element {
     fetchEmployees();
   }, []);
 
-  // Obtener empleados
   const fetchEmployees = async (): Promise<void> => {
     const { data, error } = await supabase
       .from("Empleados")
@@ -36,7 +34,6 @@ function App(): JSX.Element {
     }
   };
 
-  // Agregar empleado
   const addEmployee = async (): Promise<void> => {
     if (!name || !position || !email || !salary) return;
 
@@ -64,7 +61,6 @@ function App(): JSX.Element {
     }
   };
 
-  // Editar empleado
   const editEmployee = async (employee: Employee): Promise<void> => {
     const newName = prompt("Nuevo nombre:", employee.name);
     const newPosition = prompt("Nuevo puesto:", employee.position);
@@ -105,7 +101,6 @@ function App(): JSX.Element {
     }
   };
 
-  // Eliminar empleado
   const deleteEmployee = async (id: number): Promise<void> => {
     const { error } = await supabase
       .from("Empleados")

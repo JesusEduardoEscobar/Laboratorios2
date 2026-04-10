@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
 
-// Interfaz para los empleados
 interface Employee {
   id: string;
   name: string;
@@ -54,7 +53,6 @@ export default function Home(): JSX.Element {
     }));
   };
 
-  // Agregar empleado
   const handleAdd = async (): Promise<void> => {
     if (!formData.name || !formData.email) return;
 
@@ -68,13 +66,11 @@ export default function Home(): JSX.Element {
     fetchEmployees();
   };
 
-  // Eliminar empleado
   const handleDelete = async (id: string): Promise<void> => {
     await deleteDoc(doc(db, "employees", id));
     fetchEmployees();
   };
 
-  // Editar empleado
   const handleEdit = async (employee: Employee): Promise<void> => {
     const name = prompt("Nuevo nombre:", employee.name);
     const position = prompt("Nuevo puesto:", employee.position);
@@ -99,8 +95,6 @@ export default function Home(): JSX.Element {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <h1 className="text-2xl font-bold">Tabla de Empleados</h1>
-
-      {/* Formulario */}
       <div className="flex flex-col gap-2 w-full max-w-md">
         <input
           type="text"
@@ -142,7 +136,6 @@ export default function Home(): JSX.Element {
         </button>
       </div>
 
-      {/* Tabla */}
       <div className="w-full max-w-4xl overflow-x-auto">
         <table className="w-full border-collapse border border-gray-300 mt-6">
           <thead>
